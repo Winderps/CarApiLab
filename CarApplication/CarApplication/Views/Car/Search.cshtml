@@ -1,0 +1,15 @@
+@model List<Car>
+
+<form action="/Car/Search">
+    <input type="text" name="make" placeholder="Make" value="@ViewBag.Make"/>
+    <input type="text" name="model" placeholder="Model" value="@ViewBag.Model"/>
+    <input type="text" name="color" placeholder="Color" value="@ViewBag.Color"/>
+    <input type="number" name="year" placeholder="Year" min="1850" max="@DateTime.Now.Year" @(ViewBag.Year != 0 ? $"value=\"{ViewBag.Year}\"" : "")/>
+    <input type="submit" value="Search!" class="btn-primary"/>
+</form>
+<div class="list-group">
+    @foreach (Car m in Model)
+    {
+        <a href="/Car/CarListing?id=@m.Id" class="list-group-item list-group-item-action">@m.Color @m.Make @m.Model</a>
+    }
+</div>
